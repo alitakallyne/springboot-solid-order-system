@@ -1,4 +1,4 @@
-package dev.alita.solid.entity.enums;
+package dev.alita.solid.domain.entity.enums;
 
 public enum CustomerType {
     REGULAR,

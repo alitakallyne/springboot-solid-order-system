@@ -1,12 +1,12 @@
-package dev.alita.solid.service;
+package dev.alita.solid.application.service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import dev.alita.solid.entity.Order;
-import dev.alita.solid.strategy.DiscountStrategy;
+import dev.alita.solid.domain.entity.Order;
+import dev.alita.solid.domain.strategy.DiscountStrategy;
 
 @Service
 public class DiscountService {

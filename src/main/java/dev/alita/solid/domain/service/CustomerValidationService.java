@@ -1,8 +1,8 @@
-package dev.alita.solid.service;
+package dev.alita.solid.domain.service;
 
 import org.springframework.stereotype.Service;
 
-import dev.alita.solid.entity.Customer;
+import dev.alita.solid.domain.entity.Customer;
 
 @Service
 public class CustomerValidationService {
