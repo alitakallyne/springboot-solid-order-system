@@ -1,26 +1,46 @@
 package dev.alita.solid.service;
 
-import dev.alita.solid.entity.Order;
+import java.math.BigDecimal;
 
+import org.springframework.stereotype.Service;
+
+import dev.alita.solid.entity.Order;
+import dev.alita.solid.repository.OrderRepository;
+import dev.alita.solid.service.notification.EmailNotificationService;
+
+@Service
 public class OrderService {
 
-    public void criarOrder(Order order) {
+    private final OrderRepository orderRepository;
+    private final CustomerValidationService validationService;
+    private final DiscountService discountService;
+    private final EmailNotificationService emailService;
 
-        // validar cliente
 
-        System.out.println("Validando cliente " + order.getCustomerName());
-
-        // Lógica para criar um pedido
-        System.out.println("Criando pedido para " + order.getCustomerName());
-
-        // calcular desconto
-
-        System.out.println("Calculando desconto para " + order.getCustomerName());
-
-        // enviar email
-
-        System.out.println("Enviando email para " + order.getCustomerName());
-
-     
+    
+    public OrderService(OrderRepository orderRepository, CustomerValidationService validationService,
+            DiscountService discountService, EmailNotificationService emailService) {
+        this.orderRepository = orderRepository;
+        this.validationService = validationService;
+        this.discountService = discountService;
+        this.emailService = emailService;
     }
+
+
+
+    public Order processOrder(Order order) {
+        
+        validationService.validateCustomer(order.getCustomer());
+
+        BigDecimal discount = discountService.applyDiscount(order);
+        order.setTotal(discount);
+
+        Order savedOrder = orderRepository.save(order);
+
+        emailService.sendEmail(savedOrder.getCustomer().getEmail(), "Hello " + savedOrder.getCustomer().getName() + ", " + "Your order has been processed successfully.");
+        
+        return savedOrder;
+    }
+
+   
 }
