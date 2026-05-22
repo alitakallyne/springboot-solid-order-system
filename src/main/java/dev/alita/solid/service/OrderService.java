@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import dev.alita.solid.entity.Order;
 import dev.alita.solid.repository.OrderRepository;
 import dev.alita.solid.service.notification.EmailNotificationService;
+import dev.alita.solid.service.notification.EmailSender;
 
 @Service
 public class OrderService {
@@ -14,7 +15,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final CustomerValidationService validationService;
     private final DiscountService discountService;
-    private final EmailNotificationService emailService;
+    private final EmailSender emailService;
 
 
     

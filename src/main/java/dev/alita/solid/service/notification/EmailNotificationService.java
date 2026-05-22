@@ -1,12 +1,13 @@
 package dev.alita.solid.service.notification;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
-public class EmailNotificationService {
+@Component
+public class EmailNotificationService  implements EmailSender {
 
+    @Override
     public void sendEmail(String email, String message) {
-        
-        System.out.println("Enviando email para " + email + ": " + message);
+        // Simulate sending an email
+        System.out.println("Sending email to " + email + ": " + message);
     }
 }
