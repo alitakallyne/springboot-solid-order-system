@@ -81,7 +81,7 @@ Este projeto foi criado com foco em:
 ## Clone o projeto
 
 ```bash
-git clone https://github.com/SEU_USUARIO/springboot-solid-order-system.git
+git clone https://github.com/alitakallyne/springboot-solid-order-system.git
 ```
 
 ## Entre na pasta
