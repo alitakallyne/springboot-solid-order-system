@@ -1,6 +1,9 @@
 package dev.alita.solid.entity;
 
+import dev.alita.solid.entity.enums.CustomerType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,5 +22,6 @@ public class Customer {
 
     private String email;
 
-    private boolean vip;
+    @Enumerated(EnumType.STRING)
+    private CustomerType type;
 }
