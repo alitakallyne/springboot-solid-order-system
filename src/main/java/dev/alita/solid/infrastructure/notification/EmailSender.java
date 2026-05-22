@@ -1,4 +1,4 @@
-package dev.alita.solid.service.notification;
+package dev.alita.solid.infrastructure.notification;
 
 public interface EmailSender {
 

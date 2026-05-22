@@ -1,6 +1,6 @@
-package dev.alita.solid.entity;
+package dev.alita.solid.domain.entity;
 
-import dev.alita.solid.entity.enums.CustomerType;
+import dev.alita.solid.domain.entity.enums.CustomerType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
