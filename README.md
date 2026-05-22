@@ -1,6 +1,6 @@
 # 📦 Spring Boot SOLID Order System
 
-Projeto desenvolvido para demonstrar a aplicação dos princípios SOLID utilizando Java + Spring Boot.
+Projeto desenvolvido para demonstrar a aplicação dos princípios SOLID e conceitos de Clean Architecture utilizando Java + Spring Boot.
 
 ---
 
@@ -10,6 +10,7 @@ Projeto desenvolvido para demonstrar a aplicação dos princípios SOLID utiliza
 - Spring Boot
 - Spring Web
 - JPA/Hibernate
+- H2 Database
 - Maven
 
 ---
@@ -30,37 +31,55 @@ Projeto desenvolvido para demonstrar a aplicação dos princípios SOLID utiliza
 
 O projeto foi organizado utilizando:
 
-- Controller Layer
-- Service Layer
-- Repository Layer
+- Clean Architecture
+- Separation of Concerns
 - DTO Pattern
 - Strategy Pattern
 - Dependency Injection
+- Use Case Pattern
+- Domain Layer Separation
 
 ---
 
 # 📂 Estrutura do Projeto
 
 ```bash
-src/main/java/com/example/ordersystem
+src/main/java/dev/alita/solid
 
-controller/
-service/
-repository/
-strategy/
-dto/
-entity/
+├── application
+│   ├── dto
+│   ├── service
+│   └── usecase
+│
+├── domain
+│   ├── entity
+│   ├── enums
+│   ├── service
+│   └── strategy
+│
+├── infrastructure
+│   ├── notification
+│   └── repository
+│
+├── interfaces
+│   └── controller
+│
+└── SolidApplication.java
 ```
 
 ---
 
 # 🔥 Funcionalidades
 
-✅ Cadastro de pedidos  
-✅ Aplicação de desconto para clientes VIP  
-✅ Estratégia de descontos  
-✅ Envio de notificações  
-✅ Separação de responsabilidades  
+- ✅ Cadastro de pedidos
+- ✅ Aplicação de desconto baseada em estratégia
+- ✅ Clientes REGULAR, VIP e PREMIUM
+- ✅ Validação de clientes
+- ✅ Envio de notificações por e-mail
+- ✅ Separação de responsabilidades
+- ✅ Arquitetura desacoplada
+- ✅ Uso de DTOs para entrada e saída
+- ✅ Inversão de dependência com interfaces
 
 ---
 
@@ -68,13 +87,37 @@ entity/
 
 Este projeto foi criado com foco em:
 
-- boas práticas
+- boas práticas de desenvolvimento
 - clean code
 - arquitetura escalável
+- aprendizado de SOLID
+- aplicação prática de Clean Architecture
 - preparação para projetos enterprise
 - estudos avançados de Spring Boot
 
 ---
+# 🧩 Padrões Utilizados
+## Strategy Pattern
+
+O cálculo de desconto foi implementado utilizando Strategy Pattern, permitindo extensão de novas regras sem modificar código existente.
+
+Exemplo:
+
+- VipDiscountStrategy
+- PremiumDiscountStrategy
+- RegularDiscountStrategy
+# 🔄 Fluxo da Aplicação
+```
+Controller
+   ↓
+UseCase
+   ↓
+Domain Services / Strategies
+   ↓
+Repository
+   ↓
+Notification Service
+```
 
 # ▶️ Como executar
 
@@ -98,6 +141,15 @@ cd springboot-solid-order-system
 
 ---
 
+# 🗄️ Banco H2
+
+O projeto utiliza H2 Database para desenvolvimento e testes.
+
+Acessar console do H2
+```
+http://localhost:8080/h2-console
+```
+
 # 📌 Endpoint
 
 ## Criar pedido
@@ -108,9 +160,8 @@ POST `/orders`
 
 ```json
 {
-  "customerName": "Alita",
-  "total": 1000,
-  "vip": true
+  "customerId": 1,
+  "total": 1000
 }
 ```
 
